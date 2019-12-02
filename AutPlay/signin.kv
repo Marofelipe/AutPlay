@@ -1,0 +1,480 @@
+<MyLabelWithBackground@Label>:
+    canvas.before:
+        Color:
+            rgba: .06,.45,.45,.5
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            
+<Botao@Button+Label>:
+    disabled:True
+<Voltar@Button+Label>:
+    size_hint_y:None
+    height:60
+    size_hint_x:None
+    width:60
+    text:'Voltar'
+    background_color:(.06,.45,.45,1)
+    background_normal: ''
+
+
+<Gerenciador>:
+    id: screen_manager
+    transition: FadeTransition()
+    SigninWindow:
+        name: 'window'
+    Menu:
+        name: 'Menu'    
+    Comunicar:
+        name: 'Comunicar'
+    Quero:
+        name:'Quero'
+    Nao_quero:
+        name:'Nao_quero'
+    Comer:
+        name:'Comer'
+    Beber:
+        name:'Beber'
+    Jogar:
+        name:'Jogar'
+    Brincar:
+        name:'Brincar'
+
+    Certo:
+        name:'Certo'
+    Errado:
+        name:'Errado'
+    Dormir:
+        name:'Dormir'
+    Banho:
+        name:'Banho'
+    Dentes:
+        name:'Dentes'
+    Mal:
+        name:'Mal'
+    jogar:
+        name:'jogar'
+    Atividades:
+        name:'Atividades'    
+
+    Inicio:
+        id: inicio
+        name: 'inicio'
+        manager: screen_manager
+
+    Jogo:
+        id: jogo
+        name: "jogo"
+        manager: screen_manager
+    
+
+<Comunicar>
+    id: comunicar
+    Botao:
+        id:Background_Tema_Comunicar
+    Voltar:
+        on_release:app.root.current='Menu'
+    BoxLayout:
+        padding:70
+        spacing:20
+        orientation: 'vertical'
+
+        BoxLayout:
+            spacing:10
+            Button:
+                background_normal:'eu_quero.jpg'
+                on_release: app.root.current = 'Quero'
+            Button:
+                background_normal:'eu_nao_quero.jpg'
+                on_release: app.root.current = 'Nao_quero'
+            Button:
+                background_normal:'comer.jpg'
+                on_release: app.root.current = 'Comer'
+            Button:
+                background_normal:'beber_agua.jpg'
+                on_release: app.root.current = 'Beber'
+            Button:
+                background_normal:'jogar.jpg'
+                on_release: app.root.current = 'jogar'
+            Button:
+                background_normal:'brincar.jpg'
+                on_release: app.root.current = 'Brincar'
+
+
+        BoxLayout:
+            spacing:10
+            Button:
+                background_normal: 'certo.png'
+                on_release: app.root.current = 'Certo'
+            Button:
+                background_normal:'errado.png'
+                on_release: app.root.current = 'Errado'
+            Button:
+                background_normal:'dormir.jpg'
+                on_release: app.root.current = 'Dormir'
+            Button:
+                background_normal:'tomar_banho.jpg'
+                on_release: app.root.current = 'Banho'
+            Button:
+                background_normal:'escovar_dentes.jpg'
+                on_release: app.root.current = 'Dentes'
+            Button:
+                background_normal:'passando_mal.jpg'
+                on_release: app.root.current = 'Mal'
+ 
+                
+                
+            
+<Menu>
+    id: menu
+    Botao:              
+        id:Background_Tema
+    Voltar:
+        on_release:app.root.current='window'    
+    BoxLayout:
+        id:btnM
+        padding:150
+        spacing:30
+
+        Button: 
+            color:0,0,0,1 
+            id:'JogarBtn'
+            text: 'Jogar'
+            font_size:26 
+            bold:True
+            background_normal: 'Jogar.jpg'
+            on_release:app.root.current = 'inicio'
+            
+            
+        Button:
+            color:0,0,0,1  
+            id:'ComunicarBtn'
+            text: 'Comunicar'
+            font_size:26
+            bold:True
+            background_normal: 'Comunicar.jpg'
+            on_release:app.root.current = 'Comunicar'
+            
+        Button:
+            color:0,0,0,1
+            id:'AtividadesBtn'
+            text:'Atividades'
+            font_size:26
+            bold:True
+            background_normal: 'agenda.jpg'
+            on_release:app.root.current = 'Atividades'         
+
+
+
+
+<Atividades>:
+    name:'Atividades'
+    orientation:'vertical'
+    
+    Botao:
+        id:Background_Tema_Atividades
+
+    ScrollView:
+        BoxLayout:
+            id:box
+            orientation:'vertical'
+            size_hint_y:None
+            height:self.minimum_height
+    BoxLayout:
+        size_hint_y:None
+        height:60
+        Voltar:
+
+            on_release:app.root.current='Menu'
+        TextInput:
+            id:text_Atividade
+            multiline:False
+        TextInput:
+            id:Hora_Atividade
+            multiline:False   
+        Button:
+            background_normal:''
+            background_color:(.06,.45,.45,1)
+            text:'+'
+            size_hint_x:None
+            width:60
+            on_release:
+                root.AddWidget()
+                
+
+<Atividade>:
+    size_hint_y:None
+    heght:200
+    background_color:(.06,.45,.45,1)
+    MyLabelWithBackground:
+        id:label
+        font_size:30
+        bold:True
+    Button:
+        background_normal:''
+        background_color:(.06,.45,.45,1)
+        size_hint_x:None
+        text:'X'
+        width:60
+        on_release: app.root.get_screen('Atividades').RemoveWdd(root)
+
+          
+<Jogar>:
+    Botao:
+        id:Background_Tema_Jogar
+    Voltar:
+        on_release:app.root.current='Menu'
+                   
+
+<SigninWindow>:
+    name:'main_win'
+    id: main_win
+    orientation: "vertical"
+    spacing: 10
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos  
+    BoxLayout: 
+        size_hint_y: None
+        height: 50
+        canvas.before:
+            Color:
+                rgba: (.06,.45,.45,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos  
+        Label:
+            text: "AutPlay"
+            bold: True
+            font_size:30
+            
+  
+    Label:
+        text:'ESCOLHA SEU PERSONAGEM'
+        font_size:40
+        bold:True
+        height:1000
+        size_hint_y:None
+        color:(0,0,0,1)    
+    BoxLayout:
+        size_hint_y:None
+        height:400
+        padding:100
+        spacing:50
+        
+
+        Button:
+            background_normal: 'avatar_cebolinha.jpg'
+            on_release:
+                app.root.get_screen('Menu').ids.Background_Tema.background_disabled_normal = 'Turma_da_Monica.jpg'
+                app.root.get_screen('Atividades').ids.Background_Tema_Atividades.background_disabled_normal = 'Turma_da_Monica.jpg'
+                app.root.get_screen('Comunicar').ids.Background_Tema_Comunicar.background_disabled_normal = 'Turma_da_Monica.jpg'
+                app.root.get_screen('Jogar').ids.Background_Tema_Jogar.background_disabled_normal = 'Turma_da_Monica.jpg'
+                app.root.current = 'Menu'  
+        
+        Button: 
+            background_normal: 'avatar_peppa_pig.jpg'
+            on_release:
+                app.root.get_screen('Menu').ids.Background_Tema.background_disabled_normal = 'peppa_pig.jpg'
+                app.root.get_screen('Atividades').ids.Background_Tema_Atividades.background_disabled_normal = 'peppa_pig.jpg'
+                app.root.get_screen('Comunicar').ids.Background_Tema_Comunicar.background_disabled_normal = 'peppa_pig.jpg'
+                app.root.get_screen('Jogar').ids.Background_Tema_Jogar.background_disabled_normal = 'peppa_pig.jpg'              
+                app.root.current = 'Menu'
+            
+        Button: 
+            background_normal: 'Avatar_galinha_pintadinha.jpg'
+            on_release:
+                app.root.get_screen('Menu').ids.Background_Tema.background_disabled_normal = 'galinha_pintadinha.jpg'
+                app.root.get_screen('Atividades').ids.Background_Tema_Atividades.background_disabled_normal = 'galinha_pintadinha.jpg'
+                app.root.get_screen('Comunicar').ids.Background_Tema_Comunicar.background_disabled_normal = 'galinha_pintadinha.jpg'
+                app.root.get_screen('Jogar').ids.Background_Tema_Jogar.background_disabled_normal = 'galinha_pintadinha.jpg'
+                
+                app.root.current = 'Menu' 
+
+<Comer>:
+    BoxLayout:
+        Button:
+            background_normal: 'comer.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<Beber>:
+    BoxLayout:
+        Button:
+            background_normal: 'beber_agua.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<Quero>:
+    BoxLayout:
+        Button:
+            background_normal:'eu_quero.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<Nao_quero>:
+    BoxLayout:
+        Button:
+            background_normal:'eu_nao_quero.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<Brincar>:
+    BoxLayout:
+        Button:
+            background_normal: 'brincar.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<jogar>:
+    BoxLayout:
+        Button:
+            background_normal:'jogar.jpg'
+            on_release: app.root.current = 'Comunicar'
+<Certo>:
+    BoxLayout:
+        Button:
+            background_normal: 'certo.png'
+            on_release: app.root.current = 'Comunicar'
+
+<Errado>:
+    BoxLayout:
+        Button:
+            background_normal: 'errado.png'
+            on_release: app.root.current = 'Comunicar'
+
+<Dormir>:
+    BoxLayout:
+        Button:
+            background_normal:'dormir.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<Banho>:
+    BoxLayout:
+        Button:
+            background_normal:'tomar_banho.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<Dentes>:
+    BoxLayout:
+        Button:
+            background_normal: 'escovar_dentes.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+<Mal>:
+    BoxLayout:
+        Button:
+            background_normal:'passando_mal.jpg'
+            on_release: app.root.current = 'Comunicar'
+
+#: import C kivy.utils.get_color_from_hex
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+# GERENCIADOR DE TELAS
+
+    
+
+# TELA DE INICIO
+<Inicio>:
+
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Image:
+            source: "image/logo.png"
+            pos_hint: {'center_x': .5, 'center_y': .5}
+
+        Button:
+            text: "Inicio"
+            font_size: "40sp"
+            background_normal: ""
+            background_color: C("#1E90FF")
+            on_press: root.manager.current = "jogo"
+            size_hint: (.4,.3)
+            pos_hint: {'center_x': .5, 'center_y': .3}
+            on_release: root.jogar()
+
+        Label:
+            text: "Autor: Rafael Muller Franco"
+            color: C("#1E90FF")
+            pos_hint: {'x': 0, 'y': 0}
+            size_hint: 1,.1
+
+# TELA DO JOGO
+<Jogo>:
+
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color: 
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        spacing: 2
+
+        ActionBar:
+            background_image: 'image/normal.png'
+            background_color: C("#1E90FF")
+            id: menu
+            pos_hint: {'top': 1} 
+            ActionView:
+                use_separator: True
+                ActionPrevious:
+                    title: "Jogo da Forca"
+                    with_previous: False
+                    #app_icon:
+                ActionOverflow:
+                ActionButton:
+                    #icon: 
+                    text: "Reiniciar"
+                    on_release: root.sortear_palavra()
+                ActionButton:
+                    text: "Sair"
+                    on_release: app.root.current = 'Menu'
+
+        Image:
+            id: image
+            source: "image/1.jpg"
+
+        Label:
+            text: root.lbl_tentativas
+            halign: "center"
+            valign: "middle"
+            color: C("B22222")
+            font_size: "25sp"
+            size_hint: (1, .15)
+            markup: True
+
+        Label:
+            text: root.lbl_certas
+            halign: "center"
+            valign: "middle"
+            color: C("1E90FF")
+            font_size: "40sp"
+            size_hint: (1, .2)
+            markup: True
+
+        TextInput:
+            id: txt_chute
+            focus: True
+            font_size: "40sp"
+            size_hint: (.3, .2)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            multiline: False
+            on_text_validate: root.chute()
+
+        Button:
+            text: "Chute"
+            background_normal: ""
+            background_color: C("#1E90FF")
+            font_size: "25sp"
+            size_hint: (.4, .2)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_release: root.chute()
+        Label:
+            size_hint: (.5,.05)
