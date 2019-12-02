@@ -284,7 +284,7 @@ class SigninApp(App):
    
     def build(self):
     	Clock.schedule_interval(Time().updateTime,1)
-    	Clock.schedule_interval(Time().Aviso,10)
+    	Clock.schedule_interval(Time().Aviso,60)
     	return Gerenciador()
         
             
